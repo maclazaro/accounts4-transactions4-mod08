@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="accountsTransactions" format="json">
+      <types:shape format="weave" example="examples/accountsTransactionsExample.json"><![CDATA[%dw 2.0
+
+type accountsTransactions = Array<{|  amount: String,   customerRef: String,   flightID: String,   region: String,   transactionID: String|}> {"example": "[{\"amount\":\"9717.0\",\"customerRef\":\"4412\",\"flightID\":\"UNITEDER09452015-06-11\",\"region\":\"EU\",\"transactionID\":\"181948488\"},{\"amount\":\"1030.0\",\"customerRef\":\"4985\",\"flightID\":\"DELTAA1B3D42015-02-12\",\"region\":\"US\",\"transactionID\":\"181948625\"}]"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#e0533784-ca32-417b-ab25-4f6c0a6d952a">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="accountsTransactions[]"/>
+        </types:message>
+        <types:variables>
+          <types:variable name="transactions" type="accountsTransactions[]"/>
+        </types:variables>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

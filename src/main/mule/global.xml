@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:accounts-api="http://www.mulesoft.org/schema/mule/accounts-api"
+	xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd
+http://www.mulesoft.org/schema/mule/accounts-api http://www.mulesoft.org/schema/mule/accounts-api/current/mule-accounts-api.xsd">
+	<accounts-api:config name="Accounts_API_Config" doc:name="Accounts API Config" doc:id="3860af48-888a-456a-b86b-8696b7eb90e1" property_host="${accounts.host}" property_port="${accounts.port}" property_protocol="${accounts.protocol}" property_basePath="${accounts.basePath}"/>
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="417cfd06-6b4d-4ed8-a27a-58d8237555b1" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="a9baa6af-a750-4248-9e33-5c75254ad883" file="config.yaml" />
+	<wsc:config name="Web_Service_Consumer_Config" doc:name="Web Service Consumer Config" doc:id="aa7306d1-6b18-4ab6-8993-836aac3e350b" >
+		<wsc:connection wsdlLocation="${transactions.location}" service="${transactions.service}" port="${transactions.port}"/>
+	</wsc:config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="eb965165-fc8e-4267-8c6f-f22259fc86ec" basePath="${cloudhub.basePath}" responseTimeout="500000">
+		<http:request-connection host="${cloudhub.host}" port="${cloudhub.port}" connectionIdleTimeout="500000"/>
+	</http:request-config>
+</mule>

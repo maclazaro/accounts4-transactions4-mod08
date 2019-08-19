@@ -1,0 +1,18 @@
+accounts: 
+  protocol: "HTTP"
+  host: "apdev-accounts-ws.cloudhub.io"
+  port: "80"
+  basePath: "/api"
+  
+transactions: 
+  location: "http://apdev-accounts-ws.cloudhub.io/api/transactions?wsdl"
+  service: "TransactionServiceService"
+  port: "TransactionServicePort"
+  
+http: 
+  port: "8081"
+  
+cloudhub: 
+  host: "apdev-accounts-ws.cloudhub.io"
+  port: "80"
+  basePath: "/api"
